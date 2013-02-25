@@ -1,0 +1,38 @@
+# MPLAB IDE generated this makefile for use with Microsoft `nmake'.
+# Project: ChinookCan.mcp
+# Date: Tue Feb 19 17:42:11 2013
+
+AS = pic30-as.exe
+CC = pic30-gcc.exe
+LD = pic30-ld.exe
+AR = pic30-ar.exe
+HX = pic30-bin2hex.exe
+RM = del
+
+"ChinookCan.hex" : "ChinookCan.cof"
+	$(HX) "ChinookCan.cof"
+
+"ChinookCan.cof" : "dma.o" "M_DMA.o" "M_ISR.o" "M_TMR.o" "M_UART.o" "MainCAN.o"
+	$(CC) -mcpu=33EP512MU810 "dma.o" "M_DMA.o" "M_ISR.o" "M_TMR.o" "M_UART.o" "MainCAN.o" -o"ChinookCan.cof" -Wl,-Tp33EP512MU810.gld,--defsym=__MPLAB_BUILD=1,-Map="ChinookCan.map",--report-mem
+
+"dma.o" : "..\..\..\..\..\..\program files (x86)\microchip\mplab c30\support\dsPIC33E\h\p33EP512MU810.h" "dma.h" "dma.c"
+	$(CC) -mcpu=33EP512MU810 -x c -c "dma.c" -o"dma.o" -g -Wall
+
+"M_DMA.o" : "M_ADC.h" "Global.h" "p33EP512MU810.h" "M_DMA.c"
+	$(CC) -mcpu=33EP512MU810 -x c -c "M_DMA.c" -o"M_DMA.o" -g -Wall
+
+"M_ISR.o" : "..\..\..\..\..\..\program files (x86)\microchip\mplab c30\include\stdarg.h" "..\..\..\..\..\..\program files (x86)\microchip\mplab c30\include\stddef.h" "..\..\..\..\..\..\program files (x86)\microchip\mplab c30\include\stdio.h" "p33EP512MU810.h" "M_UART.h" "p33EP512MU810.h" "CMD.h" "Global.h" "p33EP512MU810.h" "M_ISR.c"
+	$(CC) -mcpu=33EP512MU810 -x c -c "M_ISR.c" -o"M_ISR.o" -g -Wall
+
+"M_TMR.o" : "Global.h" "p33EP512MU810.h" "M_TMR.c"
+	$(CC) -mcpu=33EP512MU810 -x c -c "M_TMR.c" -o"M_TMR.o" -g -Wall
+
+"M_UART.o" : "p33EP512MU810.h" "CMD.h" "M_OC.h" "Global.h" "p33EP512MU810.h" "M_UART.h" "M_UART.c"
+	$(CC) -mcpu=33EP512MU810 -x c -c "M_UART.c" -o"M_UART.o" -g -Wall
+
+"MainCAN.o" : "can.h" "..\..\..\..\..\..\program files (x86)\microchip\mplab c30\include\stdarg.h" "..\..\..\..\..\..\program files (x86)\microchip\mplab c30\include\stddef.h" "..\..\..\..\..\..\program files (x86)\microchip\mplab c30\include\stdio.h" "M_TMR.h" "p33EP512MU810.h" "M_UART.h" "Global.h" "p33EP512MU810.h" "MainCAN.c"
+	$(CC) -mcpu=33EP512MU810 -x c -c "MainCAN.c" -o"MainCAN.o" -g -Wall
+
+"clean" : 
+	$(RM) "dma.o" "M_DMA.o" "M_ISR.o" "M_TMR.o" "M_UART.o" "MainCAN.o" "ChinookCan.cof" "ChinookCan.hex"
+
